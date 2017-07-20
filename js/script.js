@@ -43,22 +43,24 @@ function checkIfUser(uid) {
   firebase.database().ref("/users/" + uid).once("value")
   .then(function(snapshot) {
     if (snapshot.exists()) {
-      if (snapshot.child("banned") === true) {
-        $("#logInForm").alert("Your acccount has been banned for violating our Terms of Service");
+      if (snapshot.child("banned").val()) {
+        window.alert("Your acccount has been banned for violating our Terms of Service");
         throw "banned";
       }
-      if (snapshot.child("locked" === true)) {
-        $("#logInForm").alert("Your acccount has been locked for inputing the incorect password too many times. Try again later.");
+      if (snapshot.child("locked").val()) {
+        window.alert("Your acccount has been locked for inputing the incorect password too many times. Try again later.");
         throw "locked";
       }
       // must be an ok user
-      return true;
+      window.location.assign("user_home.html");
+      return;
     }
-    // must be admin
-    return false
+    // must be an admin
+    window.location.assign("admin_home.html");
+    
   })
   .catch(function(error) {
-    return false;
+    console.log(error);
   })
 }
 
@@ -71,43 +73,35 @@ $(document).ready (function() {
         var isUser;
         var email = $("#email").val();
         var password = $("#pwd").val();
-        console.log("did a thing");
-        console.log(email);
-        console.log(password);
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function(firebaseUser) {
-          try {
+          // try {
             firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-              if (checkIfUser) {
-                $(window).load("user_home.html");
+              if (user) {
+                checkIfUser(user.uid);
+                // b = checkIfUser(user.uid).onreadystatechange = function() {
+                //   if (this.readyState == 4 && this.status == 200) {
+                //     document.getElementById("demo").innerHTML =
+                //     this.responseText;
+                //   }
+                //   };
+                // console.log(b);
+                // if (b) {
+                //   // window.location.assign("user_home.html");
+                // } else {
+                //   // window.location.assign("admin_home.html");
+                // }
               } else {
-                $(window).load("admin_home.html");      
+                window.alert("Authentification Failed");
+                // User is signed out.
+                // ...
               }
-            } else {
-              $("#pwd").alert("Authentification Failed");
-              // User is signed out.
-              // ...
-            }
-          });
-          } catch(error) {
-            console.log(error);
-          }
-          
-
-          console.log("loged in ok");
-          // if (checkIfUser(userId)) {
-            //   window.location.href("user_home.html");
-            // } else {
-            //   window.location.href("admin_home.html");
-            // }
-            console.log("loged in");
-            
-        }).catch(function(error) {
-          console.log(error);
-    });
-});
-});
+            });
+      }).catch(function(error) {
+          window.alert("Authentification Failed");
+          // console.log(error);
+            });
+})});
 
 
 
