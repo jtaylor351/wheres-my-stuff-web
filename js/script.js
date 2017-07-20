@@ -1,42 +1,9 @@
-// Initialize default app
-// Retrieve your own options values by adding a web app on
-// https://console.firebase.google.com
-
-// var ref = new Firebase("cs-2340-a8b03.firebaseapp.com");
-
-// ref.initializeApp({
-//   apiKey: "AIzaSyBWI3tP5zOd8Q_7uyPJzeHWtlehIKFW26k", // Auth / General Use
-//   authDomain: "cs-2340-a8b03.firebaseapp.com",         // Auth with popup/redirect
-//   databaseURL: "https://cs-2340-a8b03.firebaseio.com/", // Realtime Database
-// });
-
-// var authClient = new FirebaseAuthClient(ref, function(error, user) {
-//   if (error) {
-//     alert(error);
-//     return;
-//   }
-//   if (user) {
-//     // User is already logged in.
-//     doLogin(user);
-//   } else {
-//     // User is logged out.
-//     showLoginBox();
-//   }
-// });
-
-// firebase.auth().signInWithEmailAndPassword($("#email").val(), $("#pwd").val()).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
-
-
-// document.getElementById("logIn").addEventListener("click",
-// logIn(document.getElementById("email").value, document.getElementById("pwd").value));
-
-
-
+// userSnap is the datasnapshot of the user in the database
+function loadUser(userSnap) {
+  window.location.assign("user_home.html");
+  console.log("in loadUser");
+  document.getElementById('user_name').innerHTML = "Welcome " + userSnap.child("name").val();
+}
 
 
 function checkIfUser(uid) {
@@ -52,7 +19,7 @@ function checkIfUser(uid) {
         throw "locked";
       }
       // must be an ok user
-      window.location.assign("user_home.html");
+      loadUser(snapshot);
       return;
     }
     // must be an admin
@@ -79,18 +46,6 @@ $(document).ready (function() {
             firebase.auth().onAuthStateChanged(function(user) {
               if (user) {
                 checkIfUser(user.uid);
-                // b = checkIfUser(user.uid).onreadystatechange = function() {
-                //   if (this.readyState == 4 && this.status == 200) {
-                //     document.getElementById("demo").innerHTML =
-                //     this.responseText;
-                //   }
-                //   };
-                // console.log(b);
-                // if (b) {
-                //   // window.location.assign("user_home.html");
-                // } else {
-                //   // window.location.assign("admin_home.html");
-                // }
               } else {
                 window.alert("Authentification Failed");
                 // User is signed out.
@@ -107,34 +62,14 @@ $(document).ready (function() {
 
 
 
-
-
-// function logIn(email, password) {
-//     defaultAuth = firebase.auth();
-//     defaultAuth.signInWithEmailAndPassword(email, password)
-//         .catch(function(error) {
-//         // Handle Errors here.
-//         var errorCode = error.code;
-//         var errorMessage = error.message;
-//         if (errorCode === 'auth/wrong-password') {
-//             alert('Wrong password.');
-//         } else {
-//             alert(errorMessage);
-//     }
-//     console.log(error);
-//     });
-
-//     var currentUser;
-
-//     defaultAuth.onAuthStateChanged(function(user) {
-//         if (user) {
-//             currentUser = user;
-//             console.log("sign in worked");
-//         } else {
-//             console.log("sign in did not work");            
-//         }
-//     });
-
-
-
-// }
+// function initMap() {
+//         var uluru = {lat: -25.363, lng: 131.044};
+//         var map = new google.maps.Map(document.getElementById('map'), {
+//           zoom: 4,
+//           center: uluru
+//         });
+//         var marker = new google.maps.Marker({
+//           position: uluru,
+//           map: map
+//         });
+//       }
