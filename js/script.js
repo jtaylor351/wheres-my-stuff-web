@@ -1,41 +1,9 @@
-// userSnap is the datasnapshot of the user in the database
-function loadUser(userSnap) {
-  window.location.assign("user_home.html");
-  console.log("in loadUser");
-  document.getElementById('user_name').innerHTML = "Welcome " + userSnap.child("name").val();
-}
-
-
-function checkIfUser(uid) {
-  firebase.database().ref("/users/" + uid).once("value")
-  .then(function(snapshot) {
-    if (snapshot.exists()) {
-      if (snapshot.child("banned").val()) {
-        window.alert("Your acccount has been banned for violating our Terms of Service");
-        throw "banned";
-      }
-      if (snapshot.child("locked").val()) {
-        window.alert("Your acccount has been locked for inputing the incorect password too many times. Try again later.");
-        throw "locked";
-      }
-      // must be an ok user
-      loadUser(snapshot);
-      return;
-    }
-    // must be an admin
-    window.location.assign("admin_home.html");
-    
-  })
-  .catch(function(error) {
-    console.log(error);
-  })
-}
-
-
-
-
 $(document).ready (function() {
-    $("#logIn").on("click", function(email, password) {
+    var path = window.location.pathname;
+    var fileName = path.match(/.*\/(.*?)$/)[1];
+    switch(fileName) {
+      case "home.html":
+        $("#logIn").on("click", function(email, password) {
         var userId;
         var isUser;
         var email = $("#email").val();
@@ -52,24 +20,45 @@ $(document).ready (function() {
                 // ...
               }
             });
-      }).catch(function(error) {
-          window.alert("Authentification Failed");
-          // console.log(error);
-            });
-})});
+        }).catch(function(error) {
+            window.alert("Authentification Failed");
+            // console.log(error);
+              }); 
+        });
+        break;
+      case "user_profile.html": // all user home logic like maps and stuff
+        document.getElementById('user_name').innerHTML = "Welcome " + sessionStorage.name;
+        break;
+      case "admin_home.html": // all admin logic
+        document.getElementById('admin_name').innerHTML = "Welcome " + sessionStorage.name;
+        break;
+    }
+});
 
-
-
-
-
-// function initMap() {
-//         var uluru = {lat: -25.363, lng: 131.044};
-//         var map = new google.maps.Map(document.getElementById('map'), {
-//           zoom: 4,
-//           center: uluru
-//         });
-//         var marker = new google.maps.Marker({
-//           position: uluru,
-//           map: map
-//         });
-//       }
+function checkIfUser(uid) {
+  firebase.database().ref("/users/" + uid).once("value")
+  .then(function(snapshot) {
+    if (snapshot.exists()) {
+      if (snapshot.child("banned").val()) {
+        window.alert("Your acccount has been banned for violating our Terms of Service");
+        throw "banned";
+      }
+      if (snapshot.child("locked").val()) {
+        window.alert("Your acccount has been locked for inputing the incorect password too many times. Try again later.");
+        throw "locked";
+      }
+      // must be an ok user
+      window.sessionStorage.setItem("name", snapshot.child("name").val());
+      window.sessionStorage.setItem("uid", snapshot.child("uid").val());
+      window.location.assign("user_profile.html");
+      return;
+    }
+    firebase.database().ref("/admin/" + uid).once("value")
+      .then(function(snapshot) {
+        window.sessionStorage.setItem("name", snapshot.child("name").val());
+        window.location.assign("admin_home.html");
+      });
+  }).catch(function(error) {
+    console.log(error);
+  })
+}

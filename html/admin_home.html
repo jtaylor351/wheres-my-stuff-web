@@ -21,13 +21,13 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Admin Home</a> 
+                <div class="navbar-text">Admin Home</div> 
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
+                <li><a href="#">Active Users</a></li>
+                <li><a href="#">Locked Users</a></li>
+                <li><a href="#">Banned Users</a></li>
             </ul>
         </div>
     </nav>
@@ -35,18 +35,13 @@
     <!--Log In -->
 
     <div class="container">
-        <h2>Vertical (basic) form</h2>
-        <form>
-            <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="jumbotron" style="text-align: center; height: 40vh">
+                    <h2 id="admin_name" style="margin-top: 15%"></h2>
+                </div>
             </div>
-            <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-            </div>
-            <button type="submit" class="btn btn-default" id="logIn">Submit</button>
-        </form>
+            <div class="col-md-2"></div>
     </div>
 
 </body>
