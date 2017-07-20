@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="margin: 0; border: 0; padding: 0; z-index: 1; height: 5vh">
+    <div class="container-fluid" style="margin: 0">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="user_name">User Home</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Items Map</a></li>
+            <li><a href="submit_form.html">Submit Item</a></li>
+            <li class="active"><a href="view_item_list.html">View Items</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>View Submitted Items</h2>
+
+        <h4>Item Type Filter</h4>
+        <select>
+            <option></option>
+            <option value="Lost">Lost</option>
+            <option value="Found">Found</option>
+            <option value="Need">Need</option>
+            <option value="Donation">Donation</option>
+        </select>
+
+        <!--item table-->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>Date Posted</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+    </div>
+
+
+</nav>
+
+</body>
+</html>
