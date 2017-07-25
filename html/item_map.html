@@ -47,19 +47,150 @@
         </div>
     </nav>
 
-    <!--Log In -->
-
     <div id="map" style="height: 92.1vh; width: 100%; z-index: 0"></div>
     <script>
       function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
+        var uluru = {lat: 0, lng: 0};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
+          zoom: 1,
           center: uluru
         });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
+        var foundRef = firebase.database().ref("posts/");
+        foundRef.once('value').then(function(postSnap) {
+            var foundSnap = postSnap.child("found-items");
+            var lostSnap = postSnap.child("lost-items");
+            var donationSnap = postSnap.child("donation-items");
+            var neededSnap = postSnap.child("needed-items");
+            foundSnap.forEach(function(childSnap) {
+                var llat = childSnap.child("latitude").val();
+                var llong = childSnap.child("longitude").val();
+                var name = childSnap.child("name").val();
+                var cat = childSnap.child("category").val();                
+                var description = childSnap.child("description").val();
+                var status = childSnap.child("isOpen").val();                
+                var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
+                    '<div id="bodyContent">'+
+                    '<ul>'+
+                        '<li>Category: ' + cat + '</li>' +
+                        '<li>Description: ' + description + '</li>' +
+                        '<li>Status: ' + status + '</li>' +
+                    '</ul>'+
+                    '</div>'+
+                    '</div>';
+                var marker = new google.maps.Marker({
+                    position: {lat: llat, lng: llong},
+                    map: map,
+                    title: name,
+                    icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            });
+            lostSnap.forEach(function(childSnap) {
+                var llat = childSnap.child("latitude").val();
+                var llong = childSnap.child("longitude").val();
+                var name = childSnap.child("name").val();
+                var cat = childSnap.child("category").val();                
+                var description = childSnap.child("description").val();
+                var status = childSnap.child("isOpen").val();
+                var reward = childSnap.child("reward").val();                                                
+                var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
+                    '<div id="bodyContent">'+
+                    '<ul>'+
+                        '<li>Category: ' + cat + '</li>' +
+                        '<li>Description: ' + description + '</li>' +
+                        '<li>Status: ' + status + '</li>' +
+                        '<li>Reward: $' + reward + '</li>' +                        
+                    '</ul>'+
+                    '</div>'+
+                    '</div>';                             
+                var marker = new google.maps.Marker({
+                    position: {lat: llat, lng: llong},
+                    map: map,
+                    title: name,
+                    icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            });
+            donationSnap.forEach(function(childSnap) {
+                var llat = childSnap.child("latitude").val();
+                var llong = childSnap.child("longitude").val();
+                var name = childSnap.child("name").val();
+                var cat = childSnap.child("category").val();                
+                var description = childSnap.child("description").val();
+                var status = childSnap.child("isOpen").val();                
+                var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
+                    '<div id="bodyContent">'+
+                    '<ul>'+
+                        '<li>Category: ' + cat + '</li>' +
+                        '<li>Description: ' + description + '</li>' +
+                        '<li>Status: ' + status + '</li>' +
+                    '</ul>'+
+                    '</div>'+
+                    '</div>';                        
+                var marker = new google.maps.Marker({
+                    position: {lat: llat, lng: llong},
+                    map: map,
+                    title: name,
+                    icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            });
+            neededSnap.forEach(function(childSnap) {
+                var llat = childSnap.child("latitude").val();
+                var llong = childSnap.child("longitude").val();
+                var name = childSnap.child("name").val();
+                var cat = childSnap.child("category").val();                
+                var description = childSnap.child("description").val();
+                var status = childSnap.child("isOpen").val();                
+                var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
+                    '<div id="bodyContent">'+
+                    '<ul>'+
+                        '<li>Category: ' + cat + '</li>' +
+                        '<li>Description: ' + description + '</li>' +
+                        '<li>Status: ' + status + '</li>' +
+                    '</ul>'+
+                    '</div>'+
+                    '</div>';                         
+                var marker = new google.maps.Marker({
+                    position: {lat: llat, lng: llong},
+                    map: map,
+                    title: name,
+                    icon: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png"
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            });                             
         });
       }
     </script>
