@@ -1,0 +1,56 @@
+.homeJumbo {
+    width: auto;
+    padding: 10px;
+    background-color: lightgray;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: grey;
+}
+
+#splash {
+    position: relative;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0;
+    padding: 0;
+    margin: auto;
+    left: 300px;
+    top: 0vh;
+}
+
+ #splashImg {
+    position: relative;
+    z-index: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 767.5px;
+} 
+
+#splashScreen {
+    border: 10px;
+    border-radius: 10px;
+    background-color: lightgray;
+    z-index: 1;
+    position: absolute;
+    margin: 0 auto;
+    padding: 10px;
+    top: 250px;
+    left: 250px;
+    text-align: center;
+}
+
+#logInForm, #registerForm{
+    z-index: 1;
+    position: absolute;
+    margin: 0 auto;
+    padding: 10px;
+    top: 200px;
+    left: 180px;
+    text-align: center;
+    width: 400px;
+    height: auto;
+}

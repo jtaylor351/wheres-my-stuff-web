@@ -3,6 +3,34 @@ $(document).ready (function() {
     var fileName = path.match(/.*\/(.*?)$/)[1];
     switch(fileName) {
       case "home.html":
+        $("#back_log").on("click", function() {
+          $("#splashImg").fadeTo(150, 1, function() {
+            document.getElementById('logInForm').style.display = 'none';
+            document.getElementById('splashScreen').style.display = 'block';
+          });
+          // document.getElementById('splashImg').style.opacity = 1;
+        });
+        $("#back_register").on("click", function() {
+          $("#splashImg").fadeTo(150, 1, function() {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('splashScreen').style.display = 'block';
+          });
+          // document.getElementById('splashImg').style.opacity = 1;
+        });
+        $("#splash_log_in").on("click", function() {
+          $("#splashImg").fadeTo(150, 0.8, function() {
+            document.getElementById('splashScreen').style.display = 'none';            
+            document.getElementById('logInForm').style.display = 'block';
+          });
+          // document.getElementById('splashImg').style.opacity = 1;
+        });
+        $("#splash_register").on("click", function() {
+          $("#splashImg").fadeTo(150, 0.8, function() {
+            document.getElementById('splashScreen').style.display = 'none';            
+            document.getElementById('registerForm').style.display = 'block';
+          });
+          // document.getElementById('splashImg').style.opacity = 1;
+        });
         $("#logIn").on("click", function(email, password) {
         var userId;
         var isUser;
@@ -24,6 +52,25 @@ $(document).ready (function() {
             window.alert("Authentification Failed");
             // console.log(error);
               }); 
+        });
+        $("#register").on("click", function(email, password, uname) {
+          var email = $("#rEmail").val();
+          var password = $("#rPwd").val();
+          var uname = $("rUname").val();
+          firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(function(firebaseUser) {
+            writeUserData(firebaseUser.uid, uname, email);
+            $("#splashImg").fadeTo(150, 1, function() {
+              document.getElementById('registerForm').style.display = 'none';
+              document.getElementById('splashScreen').style.display = 'block';
+            });
+          }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            window.alert(errorMessage);
+            // ...
+          });
         });
         break;
       case "user_profile.html": // all user home logic like maps and stuff
@@ -61,4 +108,17 @@ function checkIfUser(uid) {
   }).catch(function(error) {
     console.log(error);
   })
+}
+
+function writeUserData(userId, nname, eemail) {
+  console.log(userId); 
+  firebase.database().ref('users/' + userId).set({
+    name: nname,
+    email: eemail,
+    banned: false,
+    itemCount: 0,
+    lockAttempts: 0,
+    locked: false,
+    uid: userId
+  });
 }

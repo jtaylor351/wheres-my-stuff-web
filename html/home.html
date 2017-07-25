@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8">
     <title>Where's My Stuff?</title>
     <link rel="icon" href="../img/logo.png" title="logo" width="24" height="24">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css" type="text/css" />
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
     <script>
     // Initialize Firebase
@@ -24,40 +24,75 @@
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
     <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="../css/home_style.css">    
     
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Where's My Stuff?</a> 
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
-            </ul>
+    <div id="splash">
+        <img src="../img/logo.png" alt="logo" width="50%" height="100%" id="splashImg">
+        <div id="splashScreen">
+            <h2>Where's My Stuff?</h2>
+            <button type="button" id="splash_log_in">Log In</button>
+            <button type="button" id="splash_register">Register</button>
         </div>
-    </nav>
-
+        <div class="container" id="logInForm" style="display: none">
+            <div class="jumbotron homeJumbo">
+                <h2 style="text-align: center">Log In</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                    </div>
+                    <button type="button" id="back_log">Back</button>                    
+                    <button type="button" id="logIn">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="container" id="registerForm" style="display: none">
+            <div class="jumbotron homeJumbo">
+                <h2 style="text-align: center">Register</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="uname">Username:</label>
+                        <input type="uname" class="form-control" id="rUname" placeholder="Enter username" name="uname">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="rEmail" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="rPwd" placeholder="Enter password" name="pwd">
+                    </div>
+                    <button type="button" id="back_register">Back</button>                    
+                    <button type="button" id="register">Submit</button>
+                </form>
+            </div>
+        </div> 
+    </div>
     <!--Log In -->
 
-     <div class="container" id="logInForm">
-        <h2>Vertical (basic) form</h2>
-        <form>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-            </div>
-            <button type="button" id="logIn">Submit</button>
-        </form>
-    </div> 
+     <!-- <div class="container" id="logInForm" style="display: none">
+         <div class="jumbotron" id="homeJumbo">
+            <h2 style="text-align: center">Log In</h2>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                </div>
+                <button type="button" id="logIn">Submit</button>
+            </form>
+         </div>
+    </div>  -->
 
     <!-- <script src="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.css" />
