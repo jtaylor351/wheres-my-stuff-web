@@ -11,13 +11,14 @@ $(document).ready(function() {
                 var _name = childSnap.child("name").val();
                 var _cat = childSnap.child("category").val();                
                 var _time = childSnap.child("date").val();
+                var _desc = childSnap.child("description").val();                
                 var _date = new Date(_time);
                 var day = _date.getDate();
                 var mm = _date.getMonth() + 1;
                 var year = _date.getFullYear();
                 var _strDate = mm + "/" + day + "/" + year;
                 var _type = typeSnap.key;
-                var itemObj = {name: _name, category: _cat, time: _time, date: _strDate, type: _type};
+                var itemObj = {name: _name, category: _cat, time: _time, date: _strDate, type: _type, description: _desc};
                 itemList.push(itemObj);
                 switch (_type) {
                     case "donation-items":
@@ -66,7 +67,7 @@ $(document).ready(function() {
             case "All":
                 itemList.forEach(function(i) {
                     console.log(i.name);
-                    $("#tbod").append("<tr><td>"+ i.name +"</td>" +
+                    $("#tbod").append("<tr id='"+ i.date +"'><td>"+ i.name +"</td>" +
                     "<td>"+ i.type +"</td>" +
                     "<td>"+ i.category +"</td>" +
                     "<td>"+ i.date +"</td></tr>");
@@ -109,5 +110,8 @@ $(document).ready(function() {
                 });
                 break;
         }
+    });
+    $("tr").click(function() {
+        $(this).child("description");
     });
 });

@@ -12,6 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="../js/submit_item.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse"
@@ -39,76 +40,43 @@
         <div class="form-group">
             <label for="item-name">Item Name:</label>
             <input type="text" class="form-control" id="item-name"
-                   placeholder="Enter item name" name="item-name">
-        </div>
-
+                   placeholder="Enter item name" name="item-name" required>
         <!--Item description field-->
-        <div class="form-group">
             <label for="item-desc">Item Description:</label>
             <textarea rows="5" cols="50" class="form-control" id="item-desc"
-                      placeholder="Enter Item Description"></textarea>
-        </div>
-
+                      placeholder="Enter Item Description" required></textarea>
         <!--Item type field-->
-        <div class="form-group">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button"
-                        data-toggle="dropdown">Item Type
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lost</a></li>
-                    <li><a href="#">Found</a></li>
-                    <li><a href="#">Need</a></li>
-                    <li><a href="#">Donation</a></li>
-                </ul>
-            </div>
-        </div>
-
+            <select>
+                <option value="lost">Lost</option>
+                <option value="found">Found</option>
+                <option value="need">Need</option>
+                <option value="donation">Donation</option>                        
+            </select>
         <!--Item category field-->
-        <div class="form-group">
-            <!--<div class="dropdown">-->
-            <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Item Category-->
-            <!--<span class="caret"></span></button>-->
-            <!--<ul class="dropdown-menu">-->
-            <!--<li><a href="#">Keepsake</a></li>-->
-            <!--<li><a href="#">Heirloom</a></li>-->
-            <!--<li><a href="#">Misc</a></li>-->
-            <!--</ul>-->
-            <!--</div>-->
             <select>
                 <option value="Keepsake">Keepsake</option>
                 <option value="Heirloom">Heirloom</option>
                 <option value="Misc">Misc</option>
             </select>
-        </div>
-
         <!--latitude field-->
-        <div class="form-group">
-            <label for="latitude">Location Latitude:</label>
-            <input type="number" step="any" class="form-control" id="latitude"
-                   placeholder="Latitude" name="latitude">
-
-        </div>
+            <label for="latitude" style="display:block">Location Latitude:</label>
+            <input type="number" step="any" class="form-control" id="lat"
+                   placeholder="Latitude" name="latitude" required>
 
         <!--longitude field-->
-        <div class="form-group">
             <label for="longitude">Location Latitude:</label>
-            <input type="number" step="any" class="form-control" id="longitude"
-                   placeholder="Longitude" name="longitude">
-        </div>
+            <input type="number" step="any" class="form-control" id="long"
+                   placeholder="Longitude" name="longitude" required>
 
         <!--reward field-->
-        <div class="form-group">
             <label for="reward">Reward:</label>
             <input type="number" class="form-control" id="reward"
                    placeholder="Reward" name="reward">
-        </div>
 
-        <br>
 
         <!--submit button-->
-        <button type="button" class="btn btn-primary">Submit Item</button>
-
+            <button type="button" class="btn btn-primary" id="submit">Submit Item</button>
+        </div>
     </form> <!--end form-->
 </div>
 
