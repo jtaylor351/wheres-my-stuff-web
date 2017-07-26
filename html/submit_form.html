@@ -8,6 +8,18 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css" type="text/css"/>
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDQSmUyeOD6ExS2stGnQdmY8fksqdaUDu4",
+        authDomain: "cs-2340-a8b03.firebaseapp.com",
+        databaseURL: "https://cs-2340-a8b03.firebaseio.com",
+        projectId: "cs-2340-a8b03",
+        storageBucket: "cs-2340-a8b03.appspot.com",
+        messagingSenderId: "632530183203"
+    };
+    firebase.initializeApp(config);
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -38,42 +50,54 @@
     <form> <!--begin form-->
         <!--Item name field-->
         <div class="form-group">
+            <div style="display:block; margin: 10px 0px">
             <label for="item-name">Item Name:</label>
             <input type="text" class="form-control" id="item-name"
                    placeholder="Enter item name" name="item-name" required>
+            </div>
         <!--Item description field-->
+        <div style="display:block; margin: 10px 0px">
             <label for="item-desc">Item Description:</label>
             <textarea rows="5" cols="50" class="form-control" id="item-desc"
                       placeholder="Enter Item Description" required></textarea>
+        </div>
         <!--Item type field-->
-            <select>
+        <div style="display:block; margin: 10px 0px">
+            <label for="item-type">Item Type:</label>
+            <select id="item-type">
                 <option value="lost">Lost</option>
                 <option value="found">Found</option>
                 <option value="need">Need</option>
                 <option value="donation">Donation</option>                        
             </select>
+        </div>
         <!--Item category field-->
-            <select>
+        <div style="display:block; margin: 10px 0px">
+            <label for="item-cat">Item Category:</label>            
+            <select id="item-cat">
                 <option value="Keepsake">Keepsake</option>
                 <option value="Heirloom">Heirloom</option>
                 <option value="Misc">Misc</option>
             </select>
+        </div>
         <!--latitude field-->
+        <div style="display:block; margin: 10px 0px">
             <label for="latitude" style="display:block">Location Latitude:</label>
             <input type="number" step="any" class="form-control" id="lat"
                    placeholder="Latitude" name="latitude" required>
-
+        </div>
         <!--longitude field-->
+        <div style="display:block; margin: 10px 0px">
             <label for="longitude">Location Latitude:</label>
             <input type="number" step="any" class="form-control" id="long"
                    placeholder="Longitude" name="longitude" required>
-
+        </div>
         <!--reward field-->
+        <div style="display:block; margin: 10px 0px" id="reward-box">
             <label for="reward">Reward:</label>
             <input type="number" class="form-control" id="reward"
-                   placeholder="Reward" name="reward">
-
-
+                   placeholder="Reward" name="reward" value="0">
+        </div>
         <!--submit button-->
             <button type="button" class="btn btn-primary" id="submit">Submit Item</button>
         </div>

@@ -4,11 +4,48 @@ $(document).ready(function() {
             alert("Please fill out all required fields");
             return;
         }
-    })
+        var cat = $("#item-cat").val();
+        var dat = new Date().getTime();
+        var desc = $("#item-desc").val();
+        var lat = parseFloat($("#lat").val());
+        var lng = parseFloat($("#long").val());
+        var name = $("#item-name").val();
+        var uid = sessionStorage.uid;
+        var reward = parseFloat($("#reward").val());
+        switch($("#item-type").val()) {
+            case "lost":
+                writeLostItem(cat, dat, desc, lat, lng, name, uid, reward);
+                break;
+            case "found":
+                writeFoundItem(cat, dat, desc, lat, lng, name, uid);
+                break;
+            case "need":
+                writeNeedItem(cat, dat, desc, lat, lng, name, uid);
+                break;
+            case "donation":
+                writeDonationItem(cat, dat, desc, lat, lng, name, uid);
+                break;
+        }
+        $("#item-name").removeClass('alert-success').val("");
+        $("#item-desc").removeClass('alert-success').val("");
+        $("#lat").removeClass('alert-success').val("");
+        $("#long").removeClass('alert-success').val("");
+        $("#reward").val("");
+        alert("Post Added!");
+        
+
+    });
+    $("#item-type").change(function() {
+        if ($("#item-type").val() == "lost") {
+            $("#reward-box").show();                        
+        } else {
+            $("#reward-box").hide();         
+        }
+    });
 });
 
 function writeNeedItem(cat, dat, desc, lat, long, name, uid) {
-  firebase.database().ref('posts/needed-items').set({
+  firebase.database().ref('posts/needed-items/' + uid + "---" + dat).set({
     category: cat,
     date: dat,
     description: desc,
@@ -21,7 +58,7 @@ function writeNeedItem(cat, dat, desc, lat, long, name, uid) {
 }
 
 function writeFoundItem(cat, dat, desc, lat, long, name, uid) {
-  firebase.database().ref('posts/found-items').set({
+  firebase.database().ref('posts/found-items/' + uid + "---" + dat).set({
     category: cat,
     date: dat,
     description: desc,
@@ -34,7 +71,7 @@ function writeFoundItem(cat, dat, desc, lat, long, name, uid) {
 }
 
 function writeDonationItem(cat, dat, desc, lat, long, name, uid) {
-  firebase.database().ref('posts/donation-items').set({
+  firebase.database().ref('posts/donation-items/' + uid + "---" + dat).set({
     category: cat,
     date: dat,
     description: desc,
@@ -47,7 +84,7 @@ function writeDonationItem(cat, dat, desc, lat, long, name, uid) {
 }
 
 function writeLostItem(cat, dat, desc, lat, long, name, uid, reward) {
-  firebase.database().ref('posts/lost-items').set({
+  firebase.database().ref('posts/lost-items/' + uid + "---" + dat).set({
     category: cat,
     date: dat,
     description: desc,

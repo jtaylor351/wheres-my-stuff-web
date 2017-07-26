@@ -67,7 +67,7 @@
                 var name = childSnap.child("name").val();
                 var cat = childSnap.child("category").val();                
                 var description = childSnap.child("description").val();
-                var status = childSnap.child("isOpen").val();                
+                var status = (childSnap.child("isOpen").val()) ? "Open" : "Closed";                  
                 var contentString = '<div id="content">'+
                     '<div id="siteNotice">'+
                     '</div>'+
@@ -99,7 +99,7 @@
                 var name = childSnap.child("name").val();
                 var cat = childSnap.child("category").val();                
                 var description = childSnap.child("description").val();
-                var status = childSnap.child("isOpen").val();
+                var status = (childSnap.child("isOpen").val()) ? "Open" : "Closed";    
                 var reward = childSnap.child("reward").val();                                                
                 var contentString = '<div id="content">'+
                     '<div id="siteNotice">'+
@@ -133,7 +133,7 @@
                 var name = childSnap.child("name").val();
                 var cat = childSnap.child("category").val();                
                 var description = childSnap.child("description").val();
-                var status = childSnap.child("isOpen").val();                
+                var status = (childSnap.child("isOpen").val()) ? "Open" : "Closed";                
                 var contentString = '<div id="content">'+
                     '<div id="siteNotice">'+
                     '</div>'+
@@ -165,7 +165,7 @@
                 var name = childSnap.child("name").val();
                 var cat = childSnap.child("category").val();                
                 var description = childSnap.child("description").val();
-                var status = childSnap.child("isOpen").val();                
+                var status = (childSnap.child("isOpen").val()) ? "Open" : "Closed";                
                 var contentString = '<div id="content">'+
                     '<div id="siteNotice">'+
                     '</div>'+
