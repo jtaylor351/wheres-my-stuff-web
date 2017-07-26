@@ -39,18 +39,30 @@ $(document).ready (function() {
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function(firebaseUser) {
           // try {
+            //console.log(firebaseUser.uid);
             firebase.auth().onAuthStateChanged(function(user) {
               if (user) {
-                checkIfUser(user.uid);
+                checkIfUser(user.uid); //only if correct password
               } else {
-                window.alert("Authentification Failed");
+                window.alert("Authentication failed");
                 // User is signed out.
                 // ...
               }
             });
-        }).catch(function(error) {
-            window.alert("Authentification Failed");
-            // console.log(error);
+        }).catch(function(error) { //wrong password
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (errorCode === 'auth/weak-password') {
+                alert(errorMessage);
+            } else if (errorCode === 'auth/wrong-password') { //user does exist in the system
+                 alert('Wrong password. Please try again');
+                 addLockAttempts(email); //add lock attempts and possibly lock the user if wrong pw entered
+
+              } else if (errorCode === 'auth/user-not-found') {
+                    alert('The user does not exist in the system. User may have been deleted for violation of our Terms of Service.');
+                  }
+             console.log(error);
+
               }); 
         });
         $("#register").on("click", function(email, password, uname) {
@@ -87,14 +99,19 @@ function checkIfUser(uid) {
   .then(function(snapshot) {
     if (snapshot.exists()) {
       if (snapshot.child("banned").val()) {
-        window.alert("Your acccount has been banned for violating our Terms of Service");
-        throw "banned";
+        window.alert("Your account has been banned for violating our Terms of Service");
+        throw uid + ": banned";
       }
       if (snapshot.child("locked").val()) {
-        window.alert("Your acccount has been locked for inputing the incorect password too many times. Try again later.");
-        throw "locked";
+        window.alert("Your account has been locked by the system. Please try again later or contact admin for support.");
+        throw uid + ": locked";
       }
       // must be an ok user
+
+      //reset lock attempts since authentication is successful
+      var userLockAttemptsRef = firebase.database().ref('users/' + uid + '/lockAttempts');
+      userLockAttemptsRef.set(0);
+
       window.sessionStorage.setItem("name", snapshot.child("name").val());
       window.sessionStorage.setItem("uid", snapshot.child("uid").val());
       window.location.assign("user_profile.html");
@@ -121,4 +138,38 @@ function writeUserData(userId, nname, eemail) {
     locked: false,
     uid: userId
   });
+
+
+
+}
+
+function addLockAttempts(email) {
+    var userRef = firebase.database().ref('users');
+    console.log("EMAIL: " + email);
+    userRef.once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) { //looping through uid
+          var childData = childSnapshot.val();
+
+          if (childSnapshot.child("email").val() === email) {
+            var lockAttempts = childSnapshot.child("lockAttempts").val();
+
+            var lockAttemptsRef = firebase.database().ref('users/' + childSnapshot.child('uid').val() + '/lockAttempts');
+            console.log("lock-attempts-before:" + lockAttempts);
+
+            lockAttemptsRef.set(++lockAttempts);
+
+            console.log("lock-attempts-increased:" + lockAttempts);
+
+            if (lockAttempts >= 3) {
+                var lockedStatRef = firebase.database().ref('users/' + childSnapshot.child('uid').val() + '/locked');
+                lockedStatRef.set(true);
+                console.log("locked-status:" + childSnapshot.child("locked").val());
+                alert("You have 3 failed login attempts. Your account now has been locked. Please contact admin for support.");
+                return;
+            }
+            return;
+          }
+        });
+    });
+
 }
