@@ -68,7 +68,7 @@ $(document).ready (function() {
         $("#register").on("click", function(email, password, uname) {
           var email = $("#rEmail").val();
           var password = $("#rPwd").val();
-          var uname = $("rUname").val();
+          var uname = $("#rUname").val();
           firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(function(firebaseUser) {
             writeUserData(firebaseUser.uid, uname, email);
@@ -128,7 +128,6 @@ function checkIfUser(uid) {
 }
 
 function writeUserData(userId, nname, eemail) {
-  console.log(userId); 
   firebase.database().ref('users/' + userId).set({
     name: nname,
     email: eemail,

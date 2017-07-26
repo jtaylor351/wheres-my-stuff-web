@@ -24,6 +24,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <!-- <script async defer
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQSmUyeOD6ExS2stGnQdmY8fksqdaUDu4"></script>  -->
+     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQSmUyeOD6ExS2stGnQdmY8fksqdaUDu4&libraries=places&callback=initAutocomplete" async defer></script>     
     <script src="../js/submit_item.js"></script>
 </head>
 <body>
@@ -75,13 +78,28 @@
         <div style="display:block; margin: 10px 0px">
             <label for="item-cat">Item Category:</label>            
             <select id="item-cat">
-                <option value="Keepsake">Keepsake</option>
-                <option value="Heirloom">Heirloom</option>
-                <option value="Misc">Misc</option>
+                <option value="KEEPSAKE">Keepsake</option>
+                <option value="HEIRLOOM">Heirloom</option>
+                <option value="MISC">Misc</option>
             </select>
         </div>
         <!--latitude field-->
+        <div id="location">
+            <div id="place-pick-bar">
+                <button type="button" class="btn btn-secondary" id="place-but">Search Location</button>
+            </div>
+            <div id="map-form" class="container-fluid">
+                <input id="address" for="map" type="text" style="margin: 10px 0px 0px 0px; display: block; width: 50%" class="form-control" placeholder="Enter an adress">
+                <div style="margin: 10px 0px; width: auto; height: 400px" id="map"></div>
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-1.5">
+                        <button type="button" class="btn btn-success" id="place-select">Select Location</button>                                    
+                    </div>
+                </div>
+            </div>
         <div style="display:block; margin: 10px 0px">
+
             <label for="latitude" style="display:block">Location Latitude:</label>
             <input type="number" step="any" class="form-control" id="lat"
                    placeholder="Latitude" name="latitude" required>
@@ -91,6 +109,7 @@
             <label for="longitude">Location Latitude:</label>
             <input type="number" step="any" class="form-control" id="long"
                    placeholder="Longitude" name="longitude" required>
+        </div>
         </div>
         <!--reward field-->
         <div style="display:block; margin: 10px 0px" id="reward-box">
