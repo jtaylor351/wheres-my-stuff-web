@@ -18,12 +18,12 @@ html, body {
     z-index: 0;
     padding: 0;
     margin: auto;
-    left: 300px;
-    top: 0vh;
+    /* left: 300px;
+    top: 0vh; */
 }
 
  #splashImg {
-    position: relative;
+    /* position: relative; */
     z-index: 0;
     padding: 0;
     margin: 0;
@@ -39,7 +39,7 @@ html, body {
     margin: 0 auto;
     padding: 10px;
     top: 250px;
-    left: 250px;
+    left: 270px; 
     text-align: center;
 }
 
@@ -48,9 +48,9 @@ html, body {
     position: absolute;
     margin: 0 auto;
     padding: 10px;
-    top: 200px;
-    left: 180px;
+     top: 200px;
+    left: 205px; 
     text-align: center;
-    width: 400px;
+    width: 400px; 
     height: auto;
 }

@@ -12,7 +12,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDQSmUyeOD6ExS2stGnQdmY8fksqdaUDu4",
+        authDomain: "cs-2340-a8b03.firebaseapp.com",
+        databaseURL: "https://cs-2340-a8b03.firebaseio.com",
+        projectId: "cs-2340-a8b03",
+        storageBucket: "cs-2340-a8b03.appspot.com",
+        messagingSenderId: "632530183203"
+    };
+    firebase.initializeApp(config);
+    </script>
     <script src="../js/locked_user_control.js"></script>
 </head>
 
@@ -40,28 +51,21 @@
             <table class="table">
                 <thead> <!--table header-->
                     <tr>
+                        <th></th>
                         <th>Unlock</th>
                         <th>Name</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
 
                 <tbody> <!--table body-->
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value=""></label>
-                            </div>
-                        </td>
-                        <td>Slim Shady</td>
-
-                    </tr>
                 </tbody>
 
             </table>
         </div> <!--end table-->
 
         <!--make changes button-->
-        <button type="button" class="btn btn-primary">Unock Selected Users</button>
+        <button type="button" id="unlock" style="margin:25px 0px 50px 0px" class="btn btn-primary">Unock Selected Users</button>
 
     </div>
 

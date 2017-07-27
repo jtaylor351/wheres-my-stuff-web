@@ -83,6 +83,21 @@ $(document).ready(function() {
             });
         });
     });
+    $("#search-bar").on('keypress', function() {
+        var text = $("#search-bar:text").val();
+        console.log("Text: " + text);
+        $('#tbod').children("tr").each(function() {
+            var name = $(this).children(":nth-child(2)").html();
+            console.log(name);
+            if (name.substring(0, text.length).toLowerCase() !== text.toLowerCase()) {
+                $(this).hide();
+                
+            } else {
+                $(this).show();
+                
+            }
+        });
+    });
     $("#typeBox").on('change', function() {
         console.log($("#typeBox").val());
         $("#tbod").empty();

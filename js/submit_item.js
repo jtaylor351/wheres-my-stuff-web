@@ -1,7 +1,11 @@
 $(document).ready(function() {
+    google.maps.event.addDomListener(window, "resize", resizeMap());      
+    // $("#map-form").hide();        
+    $("#place-but").click(function() {
+         $("#map-form").toggle();
+         google.maps.event.trigger(map, "resize");
+    });
     // google.maps.event.addDomListener(window, 'load', initAutocomplete);
-    google.maps.event.addDomListener(window, "resize", resizeMap());  
-    $("#map-form").hide();
     $("#submit").click(function() {
         if (!validateForm()) {
             alert("Please fill out all required fields");
@@ -46,10 +50,7 @@ $(document).ready(function() {
             $("#reward-box").hide();         
         }
     });
-    $("#place-but").click(function() {
-         $("#map-form").toggle();
-         google.maps.event.trigger(map, "resize");
-    });
+    
     $("#place-select").click(function() {
         $("#lat").val(currentPlace.geometry.location.lat());
         $("#long").val(currentPlace.geometry.location.lng());

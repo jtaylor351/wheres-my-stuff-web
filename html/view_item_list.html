@@ -45,15 +45,21 @@
         <h2>View Submitted Items</h2>
 
         <h4>Item Type Filter</h4>
-
-        <select id="typeBox">
-            <option value="All">All</option>
-            <option value="Lost">Lost</option>
-            <option value="Found">Found</option>
-            <option value="Need">Needed</option>
-            <option value="Donation">Donated</option>
-        </select>
-
+        <div class="row">
+            <div class="col-md-3">
+            <select id="typeBox">
+                <option value="All">All</option>
+                <option value="Lost">Lost</option>
+                <option value="Found">Found</option>
+                <option value="Need">Needed</option>
+                <option value="Donation">Donated</option>
+            </select>
+            </div>
+            <div class="col-md-6">
+                <label for="search-bar">Search:</label>
+                <input type="text" id="search-bar"></input>
+            </div>
+        </div>
         <!--item table-->
         <div class="table-responsive">
             <table class="table">

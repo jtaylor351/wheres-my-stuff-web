@@ -76,17 +76,19 @@ $(document).ready (function() {
             } else {
               writeUserData(firebaseUser.uid, uname, email);
             }
+            $("#splashImg").fadeTo(150, 1, function() {
+              document.getElementById('registerForm').style.display = 'none';
+              document.getElementById('splashScreen').style.display = 'block';
+            });
           }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             window.alert(errorMessage);
+            return;
             // ...
           });
-          $("#splashImg").fadeTo(150, 1, function() {
-              document.getElementById('registerForm').style.display = 'none';
-              document.getElementById('splashScreen').style.display = 'block';
-          });
+          
         });
         break;
       case "user_profile.html": // all user home logic like maps and stuff
@@ -103,6 +105,15 @@ $(document).ready (function() {
         break;
       case "admin_home.html": // all admin logic
         document.getElementById('admin_name').innerHTML = "Welcome " + sessionStorage.name;
+        $("#log-out").click(function() {
+          firebase.auth().signOut().then(function() {
+          window.location.assign("home.html");
+            // Sign-out successful.
+          }).catch(function(error) {
+            // An error happened.
+            console.log(error);
+          });
+        });
         break;
     }
 });
