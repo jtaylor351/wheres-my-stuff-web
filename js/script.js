@@ -69,6 +69,10 @@ $(document).ready (function() {
           var password = $("#rPwd").val();
           var uname = $("#rUname").val();
           var admin = ($("#admin").val() === "admin");
+          if (email === "" || password === "" || uname === "") {
+            alert("Please fill out every section of the form");
+            return;
+          }
           firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(function(firebaseUser) {
             if (admin) {

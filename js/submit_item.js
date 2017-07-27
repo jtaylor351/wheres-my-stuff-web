@@ -172,7 +172,7 @@ function resizingMap() {
 
 function initAutocomplete() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
+          center: {lat: 33.7489954, lng: -84.3879824},
           zoom: 2,
           mapTypeId: 'roadmap'
         });
