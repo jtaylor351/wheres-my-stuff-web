@@ -34,6 +34,7 @@ $(document).ready(function() {
         $("#lat").removeClass('alert-success').val("");
         $("#long").removeClass('alert-success').val("");
         $("#reward").val("");
+        $("#map-form").hide();
         alert("Post Added!");
         
 

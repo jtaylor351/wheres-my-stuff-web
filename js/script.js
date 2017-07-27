@@ -62,20 +62,20 @@ $(document).ready (function() {
                     alert('The user does not exist in the system. User may have been deleted for violation of our Terms of Service.');
                   }
              console.log(error);
-
               }); 
         });
         $("#register").on("click", function(email, password, uname) {
           var email = $("#rEmail").val();
           var password = $("#rPwd").val();
           var uname = $("#rUname").val();
+          var admin = ($("#admin").val() === "admin");
           firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(function(firebaseUser) {
-            writeUserData(firebaseUser.uid, uname, email);
-            $("#splashImg").fadeTo(150, 1, function() {
-              document.getElementById('registerForm').style.display = 'none';
-              document.getElementById('splashScreen').style.display = 'block';
-            });
+            if (admin) {
+              writeAdminData(firebaseUser.uid, uname, email);
+            } else {
+              writeUserData(firebaseUser.uid, uname, email);
+            }
           }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -83,10 +83,23 @@ $(document).ready (function() {
             window.alert(errorMessage);
             // ...
           });
+          $("#splashImg").fadeTo(150, 1, function() {
+              document.getElementById('registerForm').style.display = 'none';
+              document.getElementById('splashScreen').style.display = 'block';
+          });
         });
         break;
       case "user_profile.html": // all user home logic like maps and stuff
-        document.getElementById('user_name').innerHTML = "Welcome " + sessionStorage.name;
+        document.getElementById('profile-name').innerHTML = "Welcome " + sessionStorage.name;
+        $("#log-out").click(function() {
+          firebase.auth().signOut().then(function() {
+          window.location.assign("home.html");
+            // Sign-out successful.
+          }).catch(function(error) {
+            // An error happened.
+            console.log(error);
+          });
+        });
         break;
       case "admin_home.html": // all admin logic
         document.getElementById('admin_name').innerHTML = "Welcome " + sessionStorage.name;
@@ -123,7 +136,7 @@ function checkIfUser(uid) {
         window.location.assign("admin_home.html");
       });
   }).catch(function(error) {
-    console.log(error);
+    // console.log(error);
   })
 }
 
@@ -137,9 +150,14 @@ function writeUserData(userId, nname, eemail) {
     locked: false,
     uid: userId
   });
+}
 
-
-
+function writeAdminData(userId, nname, eemail) {
+  firebase.database().ref('admin/' + userId).set({
+    name: nname,
+    email: eemail,
+    uid: userId
+  });
 }
 
 function addLockAttempts(email) {
@@ -170,5 +188,4 @@ function addLockAttempts(email) {
           }
         });
     });
-
 }

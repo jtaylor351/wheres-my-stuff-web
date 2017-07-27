@@ -52,7 +52,7 @@
       function initMap() {
         var uluru = {lat: 0, lng: 0};
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 1,
+          zoom: 3,
           center: uluru
         });
         var foundRef = firebase.database().ref("posts/");
@@ -74,6 +74,7 @@
                     '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
                     '<div id="bodyContent">'+
                     '<ul>'+
+                        '<li>Type: Found</li>' +                                                
                         '<li>Category: ' + cat + '</li>' +
                         '<li>Description: ' + description + '</li>' +
                         '<li>Status: ' + status + '</li>' +
@@ -107,6 +108,7 @@
                     '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
                     '<div id="bodyContent">'+
                     '<ul>'+
+                        '<li>Type: Lost</li>' +                                                
                         '<li>Category: ' + cat + '</li>' +
                         '<li>Description: ' + description + '</li>' +
                         '<li>Status: ' + status + '</li>' +
@@ -140,6 +142,7 @@
                     '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
                     '<div id="bodyContent">'+
                     '<ul>'+
+                        '<li>Type: Donation</li>' +                        
                         '<li>Category: ' + cat + '</li>' +
                         '<li>Description: ' + description + '</li>' +
                         '<li>Status: ' + status + '</li>' +
@@ -172,6 +175,7 @@
                     '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
                     '<div id="bodyContent">'+
                     '<ul>'+
+                        '<li>Type: Needed</li>' +                                                
                         '<li>Category: ' + cat + '</li>' +
                         '<li>Description: ' + description + '</li>' +
                         '<li>Status: ' + status + '</li>' +
