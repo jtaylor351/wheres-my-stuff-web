@@ -1,11 +1,10 @@
 $(document).ready(function() {
-    google.maps.event.addDomListener(window, "resize", resizeMap());      
+    // google.maps.event.addDomListener(window, 'load', initMap());
     // $("#map-form").hide();        
     $("#place-but").click(function() {
          $("#map-form").toggle();
          google.maps.event.trigger(map, "resize");
     });
-    // google.maps.event.addDomListener(window, 'load', initAutocomplete);
     $("#submit").click(function() {
         if (!validateForm()) {
             alert("Please fill out all required fields");
@@ -149,14 +148,14 @@ function validateForm() {
     return b;
 }
 // var map = null;
-// function initMap() {
-//     map = new google.maps.Map(
-//         document.getElementById('map'), {
-//         center: new google.maps.LatLng(37.4419, -122.1419),
-//         zoom: 2,
-//         mapTypeId: 'roadmap'
-//     });
-// }
+function initMap() {
+    map = new google.maps.Map(
+        document.getElementById('map'), {
+        center: new google.maps.LatLng(37.4419, -122.1419),
+        zoom: 2,
+        mapTypeId: 'roadmap'
+    });
+}
 
 function resizeMap() {
    if(typeof map =="undefined") return;
@@ -221,3 +220,6 @@ function initAutocomplete() {
           map.fitBounds(bounds);
         });
       }
+
+// google.maps.event.addDomListener(window, "resize", resizeMap());
+// google.maps.event.addDomListener(window, 'load', initAutocomplete());
