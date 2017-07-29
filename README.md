@@ -17,7 +17,7 @@ This application uses multiple CDNs and an external Firebase database, so intern
 
 Starting the application:
 -------
-Open root/html/home.html in a web browser
+Open home.html in a web browser which acn be found at "root/html/home.html"
 
 
 Logging in to the application:
