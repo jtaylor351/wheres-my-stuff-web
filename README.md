@@ -13,11 +13,11 @@ Known Issues:
 
 Installation:
 -------
-This application uses multiple CDNs and an external Firebase database, so internet access is required to run the applcation
+This application uses multiple CDNs and an external Firebase database, so internet access is required to run the application
 
 Starting the application:
 -------
-Locate the directory containing the application and type "(Path to wheres-my-stuff-web)/html/home.html" into a web browser
+Open root/html/home.html in a web browser
 
 
 Logging in to the application:
