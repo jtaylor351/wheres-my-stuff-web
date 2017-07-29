@@ -5,9 +5,6 @@ Features:
 ------
 - Ability to post lost and found items for other users to see
 - Ability to post doantion requests and ability to offer donations for other users
-- Login using 
-- Adds a Teaching Assistant (TA) role so that TAs can help manage courses by creating questions and question sets
-- Statistics at the course, lecture, and user level
 
 Known Issues:
 -------
