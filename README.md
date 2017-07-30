@@ -10,6 +10,7 @@ Known Issues:
 -------
 - There is no restriction on who is allowed to register as an administrator, which could be subject to abuse
 - There is no system in place to prevent a user from redirecting themselves to a user account without properly logging in by typing in the name of the html page they would like to visit
+- A user can register with a fake email as long as it is properly formated (in the future email confirmation will be enabled)
 
 Installation:
 -------
