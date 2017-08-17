@@ -1,14 +1,14 @@
 .homeJumbo {
     width: auto;
     padding: 10px;
-    background-color: lightgray;
+    background-color: #52C1FF;
 }
 
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: grey;
+    background-color: #428AB2;
 }
 
 #splash {
@@ -33,7 +33,7 @@ html, body {
 #splashScreen {
     border: 10px;
     border-radius: 10px;
-    background-color: lightgray;
+    background-color: #52C1FF;
     z-index: 1;
     position: absolute;
     margin: 0 auto;
@@ -43,7 +43,7 @@ html, body {
     text-align: center;
 }
 
-#logInForm, #registerForm{
+#logInForm, #registerForm {
     z-index: 1;
     position: absolute;
     margin: 0 auto;
@@ -53,4 +53,8 @@ html, body {
     text-align: center;
     width: 400px; 
     height: auto;
+}
+
+#back_log, #logIn {
+    margin: 3vw
 }

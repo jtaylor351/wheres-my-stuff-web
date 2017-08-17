@@ -29,7 +29,6 @@ $(document).ready (function() {
             document.getElementById('splashScreen').style.display = 'none';            
             document.getElementById('registerForm').style.display = 'block';
           });
-          // document.getElementById('splashImg').style.opacity = 1;
         });
         $("#logIn").on("click", function(email, password) {
         var userId;
@@ -38,15 +37,12 @@ $(document).ready (function() {
         var password = $("#pwd").val();
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function(firebaseUser) {
-          // try {
-            //console.log(firebaseUser.uid);
             firebase.auth().onAuthStateChanged(function(user) {
               if (user) {
                 checkIfUser(user.uid); //only if correct password
               } else {
                 window.alert("Authentication failed");
                 // User is signed out.
-                // ...
               }
             });
         }).catch(function(error) { //wrong password
@@ -95,7 +91,7 @@ $(document).ready (function() {
           
         });
         break;
-      case "user_profile.html": // all user home logic like maps and stuff
+      case "about.html": // all user home logic like maps and stuff
         document.getElementById('profile-name').innerHTML = "Welcome " + sessionStorage.name;
         $("#log-out").click(function() {
           firebase.auth().signOut().then(function() {
@@ -142,7 +138,7 @@ function checkIfUser(uid) {
 
       window.sessionStorage.setItem("name", snapshot.child("name").val());
       window.sessionStorage.setItem("uid", snapshot.child("uid").val());
-      window.location.assign("user_profile.html");
+      window.location.assign("about.html");
       return;
     }
     firebase.database().ref("/admin/" + uid).once("value")

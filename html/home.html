@@ -36,8 +36,8 @@
                 <img src="../img/logo.png" alt="logo" width="50%" height="100%" id="splashImg">
                 <div id="splashScreen">
                     <h2>Where's My Stuff?</h2>
-                    <button type="button" id="splash_log_in">Log In</button>
-                    <button type="button" id="splash_register">Register</button>
+                    <button type="button" class="btn btn-default" id="splash_log_in">Log In</button>
+                    <button type="button" class="btn btn-default" id="splash_register">Register</button>
                 </div>
                 <div class="container" id="logInForm" style="display: none">
                 <div class="jumbotron homeJumbo">
@@ -51,8 +51,16 @@
                             <label for="pwd">Password:</label>
                             <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
                         </div>
-                        <button type="button" id="back_log">Back</button>                    
-                        <button type="button" id="logIn">Submit</button>
+                        <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-4 text-left">
+                                <button type="button" class="btn btn-primary" id="back_log" style="display: inline">Back</button>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <button type="button" class="btn btn-primary" id="logIn" style="display: inline">Submit</button>
+                            </div>
+                        </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -72,15 +80,23 @@
                             <label for="pwd">Password:</label>
                             <input type="password" class="form-control" id="rPwd" placeholder="Enter password" name="pwd">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" class="text-left">
                             <label for="pwd">User Type:</label>
-                            <select id="admin">
+                            <select class="btn btn-default dropdown-toggle" id="admin"> 
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>                            
                             </select>
                         </div>
-                        <button type="button" id="back_register">Back</button>                    
-                        <button type="button" id="register">Submit</button>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6 text-left">
+                                    <button type="button" class="btn btn-primary" id="back_register" style="display: inline">Back</button>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <button type="button" class="btn btn-primary" id="register" style="display: inline">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div> 
